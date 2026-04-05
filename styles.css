@@ -1,0 +1,754 @@
+/* ─── MINIMALIST GTD FOCUS ─── */
+
+:root {
+  --bg: #edebe5;
+  --surface: #ffffff;
+  --border: #c4bfb6;
+  --text: #0e0d0c;
+  --muted: #544f4b;
+  --accent: #0e0d0c;
+  --accent-fg: #ffffff;
+  --green: #166534;
+  --red: #991b1b;
+  --amber: #92400e;
+  --radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+button, input, textarea {
+  font: inherit;
+}
+
+/* ─── Layout ─── */
+
+.app {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 16px 80px;
+}
+
+/* ─── Header ─── */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 14px;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 10;
+}
+
+.logo {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: none;
+  color: var(--muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 120ms, color 120ms, border-color 120ms;
+}
+
+.icon-btn:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+.icon-btn.active {
+  background: var(--text);
+  color: var(--accent-fg);
+  border-color: var(--text);
+}
+
+/* ─── Settings panel ─── */
+
+.settings-panel {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.settings-form {
+  display: grid;
+  gap: 12px;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.setting-row-col {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.setting-label {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.setting-hint {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.setting-input-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.setting-input-row input {
+  width: 64px;
+  padding: 5px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+  outline: none;
+  color: var(--text);
+  background: var(--bg);
+  transition: border-color 120ms;
+}
+
+.setting-input-row input:focus {
+  border-color: var(--text);
+}
+
+.setting-unit {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.setting-text-input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  color: var(--text);
+  background: var(--bg);
+  font-size: 0.875rem;
+  transition: border-color 120ms;
+}
+
+.setting-text-input:focus {
+  border-color: var(--text);
+}
+
+.setting-select {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.875rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 120ms;
+}
+
+.setting-select:focus,
+.setting-select:hover {
+  border-color: var(--text);
+}
+
+.setting-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.setting-status {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ─── Buttons ─── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 120ms, transform 100ms;
+}
+
+.btn:hover { opacity: 0.8; }
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.btn-secondary {
+  background: var(--border);
+  color: var(--text);
+}
+
+.btn-ghost {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* ─── Add form ─── */
+
+.add-form {
+  margin-bottom: 28px;
+}
+
+.add-bar {
+  display: flex;
+  gap: 8px;
+}
+
+.add-bar input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+  transition: border-color 120ms;
+}
+
+.add-bar input:focus {
+  border-color: var(--text);
+}
+
+.notes-field {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  resize: vertical;
+  min-height: 64px;
+  max-height: 160px;
+  outline: none;
+  font-size: 0.875rem;
+  transition: border-color 120ms;
+}
+
+.notes-field:focus {
+  border-color: var(--text);
+}
+
+.notes-field.collapsed {
+  display: none;
+}
+
+/* ─── Sections ─── */
+
+.section {
+  margin-bottom: 28px;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.label-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ─── Badge ─── */
+
+.badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--border);
+  color: var(--muted);
+  padding: 1px 7px;
+  border-radius: 999px;
+}
+
+.badge.active {
+  background: #fef3c7;
+  color: var(--amber);
+}
+
+.badge:empty {
+  display: none;
+}
+
+/* ─── Current task ─── */
+
+.current-card {
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-height: 76px;
+  position: relative;
+}
+
+.current-card.empty {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.current-card:not(.empty) {
+  background: #fffcf3;
+  border-color: #c8a87a;
+  border-width: 1.5px;
+}
+
+.current-card.empty p {
+  margin: 0;
+}
+
+.current-card .current-title {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.current-card .current-notes {
+  margin: 0 0 8px;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.current-card .current-meta {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.current-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* ─── Inline done button on current card ─── */
+
+.current-done-hover {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  background: none;
+  color: var(--green);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 160ms, background 160ms;
+}
+
+.current-card:not(.empty):hover .current-done-hover {
+  opacity: 1;
+}
+
+.current-done-hover:hover {
+  background: #dcfce7;
+  opacity: 1 !important;
+}
+
+/* ─── Task list ─── */
+
+.task-list,
+.history-list {
+  display: grid;
+  gap: 4px;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: background 120ms;
+  min-height: 44px;
+}
+
+.task-row:hover {
+  background: #f6f4f1;
+}
+
+.task-row[draggable="true"] {
+  cursor: default;
+}
+
+.task-row.dragging {
+  opacity: 0.4;
+}
+
+.task-row.drop-target {
+  border-color: var(--text);
+  box-shadow: 0 0 0 1px var(--text);
+}
+
+.drag-handle {
+  color: var(--border);
+  font-size: 1.1rem;
+  cursor: grab;
+  flex-shrink: 0;
+  align-self: center;
+  user-select: none;
+  line-height: 1;
+  padding: 2px;
+  border-radius: 4px;
+  transition: color 120ms;
+}
+
+.task-row:hover .drag-handle {
+  color: var(--muted);
+}
+
+.task-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.task-row .task-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task-row .task-notes {
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task-actions {
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 140ms;
+  flex-shrink: 0;
+}
+
+.task-row:hover .task-actions,
+.task-row:focus-within .task-actions {
+  opacity: 1;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 120ms, color 120ms;
+}
+
+.action-btn:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+.done-btn:hover {
+  background: #dcfce7;
+  color: var(--green);
+}
+
+.del-btn:hover {
+  background: #fee2e2;
+  color: var(--red);
+}
+
+.start-button:not(:disabled):hover {
+  background: #fef3c7;
+  color: var(--amber);
+}
+
+.action-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ─── History ─── */
+
+.history-group {
+  display: grid;
+  gap: 3px;
+}
+
+.history-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 0 2px;
+}
+
+.history-collapse-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: 0;
+  padding: 4px 0;
+  cursor: pointer;
+  text-align: left;
+  min-width: 0;
+}
+
+.history-chevron {
+  font-size: 0.6rem;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.history-date-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.history-collapse-btn:hover .history-date-label {
+  color: var(--text);
+}
+
+.history-clear-btn {
+  flex-shrink: 0;
+  background: none;
+  border: 0;
+  padding: 3px 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 120ms, color 120ms;
+}
+
+.history-clear-btn:hover {
+  background: #fee2e2;
+  color: var(--red);
+}
+
+.history-group-body {
+  display: grid;
+  gap: 3px;
+}
+
+.history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.history-row .history-title {
+  font-size: 0.875rem;
+  color: var(--muted);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: line-through;
+  text-decoration-color: var(--border);
+}
+
+.history-row .history-meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ─── Empty states ─── */
+
+.empty-state {
+  font-size: 0.875rem;
+  color: var(--muted);
+  padding: 8px 0;
+}
+
+/* ─── Utilities ─── */
+
+.hidden {
+  display: none !important;
+}
+
+/* ─── Toast notifications ─── */
+
+.toast-container {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  width: min(440px, calc(100% - 32px));
+}
+
+.toast {
+  padding: 13px 18px;
+  border-radius: var(--radius);
+  background: #1a1917;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  transform: translateY(-10px) scale(0.97);
+  transition: opacity 240ms ease, transform 240ms ease;
+  pointer-events: auto;
+  cursor: default;
+}
+
+.toast.toast-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.toast-reminder {
+  background: #7c2d12;
+  border-left: 4px solid #f97316;
+}
+
+.toast-error {
+  background: #7f1d1d;
+  border-left: 4px solid #ef4444;
+}
+
+.toast-info {
+  background: #1e3a5f;
+  border-left: 4px solid #60a5fa;
+}
+
+/* ─── Reminder select ─── */
+
+.reminder-select {
+  flex-shrink: 0;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 120ms, color 120ms;
+}
+
+.reminder-select:focus,
+.reminder-select:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.reminder-custom-input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 120ms;
+}
+
+.reminder-custom-input:focus {
+  border-color: var(--text);
+}
+
+/* ─── Responsive ─── */
+
+@media (max-width: 600px) {
+  .history-row .history-meta {
+    display: none;
+  }
+}
+

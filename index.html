@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GTD Focus</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+
+      <div id="toastContainer" class="toast-container" aria-live="assertive"></div>
+
+      <header class="app-header">
+        <span class="logo">Things to Do</span>
+        <button id="settingsToggle" class="icon-btn" type="button" aria-label="Settings" title="Settings">⚙</button>
+      </header>
+
+      <div id="settingsPanel" class="settings-panel hidden">
+        <form id="settingsForm" class="settings-form">
+          <div class="setting-row setting-row-col">
+            <label class="setting-label" for="reminderScheduleInput">Reminder schedule <span class="setting-hint">(minutes, comma-separated)</span></label>
+            <input id="reminderScheduleInput" name="reminderSchedule" type="text" placeholder="e.g. 3, 8, 10" class="setting-text-input" />
+          </div>
+          <div class="setting-row">
+            <label class="setting-label" for="notificationSoundSelect">Alert sound</label>
+            <select id="notificationSoundSelect" name="notificationSound" class="setting-select">
+              <option value="beep">Beep</option>
+              <option value="chime">Chime</option>
+              <option value="bell">Bell</option>
+              <option value="none">Silent</option>
+            </select>
+          </div>
+          <div class="setting-actions">
+            <button class="btn btn-secondary" type="submit">Save</button>
+            <button id="notificationButton" class="btn btn-ghost" type="button">Enable notifications</button>
+          </div>
+          <p id="settingsStatus" class="setting-status"></p>
+        </form>
+      </div>
+
+      <form id="taskForm" class="add-form">
+        <div class="add-bar">
+          <input id="taskTitle" name="title" type="text" maxlength="120" placeholder="What needs doing?" autocomplete="off" required />
+          <select id="taskReminderSelect" class="reminder-select" title="Start timer at (minutes)"></select>
+          <button class="btn btn-primary" type="submit">Add</button>
+        </div>
+        <textarea id="taskNotes" name="notes" rows="2" maxlength="280" placeholder="Notes (optional)" class="notes-field collapsed"></textarea>
+      </form>
+
+      <section class="section">
+        <div class="section-label">
+          <span class="label-text">Now</span>
+        </div>
+        <div id="currentTaskCard" class="current-card empty">
+          <p>Nothing in focus — start a task from the queue.</p>
+        </div>
+        <div id="currentTaskActions" class="current-actions hidden">
+          <button id="currentDoneButton" class="btn btn-primary" type="button">Done</button>
+          <button id="currentQueueButton" class="btn btn-ghost" type="button">Back to queue</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-label">
+          <span class="label-text">Queue</span>
+          <span id="taskCount" class="badge">0</span>
+        </div>
+        <div id="taskList" class="task-list" aria-live="polite"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-label">
+          <span class="label-text">Done</span>
+          <span id="historyCount" class="badge">0</span>
+        </div>
+        <div id="historyList" class="history-list" aria-live="polite"></div>
+      </section>
+
+    </div>
+
+    <template id="taskItemTemplate">
+      <article class="task-row">
+        <span class="drag-handle" aria-hidden="true">⠿</span>
+        <div class="task-body">
+          <span class="task-title"></span>
+          <span class="task-notes"></span>
+        </div>
+        <div class="task-actions">
+          <button class="start-button action-btn" type="button" title="Start">▶</button>
+          <button class="done-button action-btn done-btn" type="button" title="Mark done">✓</button>
+          <button class="edit-button action-btn" type="button" title="Edit">✎</button>
+          <button class="delete-button action-btn del-btn" type="button" title="Remove">✕</button>
+        </div>
+      </article>
+    </template>
+
+    <template id="historyItemTemplate">
+      <article class="history-row">
+        <span class="history-title"></span>
+        <span class="history-notes" hidden></span>
+        <span class="history-meta"></span>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
