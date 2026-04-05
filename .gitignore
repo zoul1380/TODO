@@ -1,1 +1,24 @@
+# Tools
 .playwright-mcp/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependency folders (if a build step is ever added)
+node_modules/
+
+# Build output
+dist/
+build/
